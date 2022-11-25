@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<!-- Dependent Bean cfg -->
+	<!-- <bean id="amtDetails" class="com.nt.beans.AmountDetails"> <constructor-arg 
+		value="100000"/> <constructor-arg value="2"/> <constructor-arg value="12"/> 
+		</bean> -->
+	<!-- target bean class cfg -->
+	<!-- <bean id="iac" class="com.nt.beans.IntrAmountCalculator"> <constructor-arg 
+		ref="amtDetails"/> </bean> -->
+	<bean id="iac" class="com.nt.beans.IntrAmountCalculator">
+		<constructor-arg value="100000,12,2" />
+	</bean>
+
+   <!-- CustomEditorConfigurer -->
+	<bean id="cec"	class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+		<property name="customEditors">
+			<map>
+				<entry key="com.nt.beans.AmountDetails" value="com.nt.editors.AmountDetailsEditor"/>
+			</map>
+		</property>
+	</bean>
+
+
+</beans>
